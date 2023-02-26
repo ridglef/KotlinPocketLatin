@@ -26,3 +26,13 @@ kotlin {
 application {
     mainClass.set("MainKt")
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.example.Main'
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
